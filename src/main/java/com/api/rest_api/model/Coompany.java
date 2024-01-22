@@ -1,10 +1,11 @@
 package com.api.rest_api.model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Company")
-public class Company {
+@Table(name = "Coompany")
+public class Coompany {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_company")
@@ -18,6 +19,17 @@ public class Company {
 
     @Column(name = "description_company")
     private String description;
+
+    @OneToMany(mappedBy = "coompany", cascade = CascadeType.ALL)
+    private List<VerssionCompany> versions;
+
+    public List<VerssionCompany> getVersions() {
+        return versions;
+    }
+
+    public void setVersions(List<VerssionCompany> versions) {
+        this.versions = versions;
+    }
 
     public Long getId() {
         return id;
